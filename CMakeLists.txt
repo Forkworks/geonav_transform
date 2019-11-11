@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(geonav_transform)
 
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wl,-rpath,${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu -Wl,-rpath,${TX2_ROOT_PATH}/lib/aarch64-linux-gnu")
+set(Boost_INCLUDE_DIRS  ${TX2_ROOT_PATH}/usr/include/boost)
+set(Boost_LIBRARIES  ${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu)
+message("[GEONAV_TRANSFORM] Catkin lib path: ${catkin_LIBRARIES}")
+message("[GEONAV_TRANSFORM] Boost lib path: ${Boost_LIBRARIES}")
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -19,7 +25,7 @@ find_package(catkin REQUIRED COMPONENTS
 # Attempt to find Eigen using its own CMake module.
 # If that fails, fall back to cmake_modules package.
 #find_package(Eigen3)
-find_package(Eigen)
+find_package(Eigen3)
 set(EIGEN_PACKAGE EIGEN3)
 if(NOT EIGEN3_FOUND)
   find_package(cmake_modules REQUIRED)
@@ -28,6 +34,8 @@ if(NOT EIGEN3_FOUND)
   set(EIGEN3_LIBRARIES ${EIGEN_LIBRARIES})
   set(EIGEN_PACKAGE Eigen)
 endif()
+
+message("[GEONAV_TRANSFORM] Eigen lib path: ${EIGEN_LIBRARIES}")
 
 add_definitions(-DEIGEN_NO_DEBUG -DEIGEN_MPL2_ONLY)
 
@@ -90,6 +98,7 @@ add_executable(geonav_transform_node src/geonav_transform_node.cpp)
 target_link_libraries(geonav_transform
    ${catkin_LIBRARIES} 
    ${EIGEN3_LIBRARIES}
+   ${Boost_LIBRARIES}
 )
 target_link_libraries(geonav_transform_node geonav_transform
    ${catkin_LIBRARIES} 
