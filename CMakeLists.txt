@@ -15,7 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf2_geometry_msgs
   tf2_ros
 )
-
+SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib/geonav_transform")
 # Attempt to find Eigen using its own CMake module.
 # If that fails, fall back to cmake_modules package.
 #find_package(Eigen3)
@@ -109,6 +109,8 @@ target_link_libraries(geonav_transform_node geonav_transform
 #   scripts/my_python_script
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
+SET(BINARIES_INSTALL_DIR lib/geonav_transform)
+install(TARGETS geonav_transform geonav_transform_node DESTINATION ${BINARIES_INSTALL_DIR})
 
 ## Mark executables and/or libraries for installation
 # install(TARGETS geonav_transform geonav_transform_node
