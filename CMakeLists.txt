@@ -2,11 +2,13 @@ cmake_minimum_required(VERSION 2.8.3)
 project(geonav_transform)
 
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wl,-rpath,${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu -Wl,-rpath,${TX2_ROOT_PATH}/lib/aarch64-linux-gnu")
-set(Boost_INCLUDE_DIRS  ${TX2_ROOT_PATH}/usr/include/boost)
-set(Boost_LIBRARIES  ${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu)
-message("[GEONAV_TRANSFORM] Catkin lib path: ${catkin_LIBRARIES}")
-message("[GEONAV_TRANSFORM] Boost lib path: ${Boost_LIBRARIES}")
+if(CROSSCOMPILE)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wl,-rpath,${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu -Wl,-rpath,${TX2_ROOT_PATH}/lib/aarch64-linux-gnu")
+	set(Boost_INCLUDE_DIRS  ${TX2_ROOT_PATH}/usr/include/boost)
+	set(Boost_LIBRARIES  ${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu)
+	message("[GEONAV_TRANSFORM] Catkin lib path: ${catkin_LIBRARIES}")
+	message("[GEONAV_TRANSFORM] Boost lib path: ${Boost_LIBRARIES}")
+endif()
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
