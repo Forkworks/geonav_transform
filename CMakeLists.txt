@@ -6,8 +6,6 @@ if(CROSSCOMPILE)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wl,-rpath,${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu -Wl,-rpath,${TX2_ROOT_PATH}/lib/aarch64-linux-gnu")
 	set(Boost_INCLUDE_DIRS  ${TX2_ROOT_PATH}/usr/include/boost)
 	set(Boost_LIBRARIES  ${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu)
-	message("[GEONAV_TRANSFORM] Catkin lib path: ${catkin_LIBRARIES}")
-	message("[GEONAV_TRANSFORM] Boost lib path: ${Boost_LIBRARIES}")
 endif()
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -36,8 +34,6 @@ if(NOT EIGEN3_FOUND)
   set(EIGEN3_LIBRARIES ${EIGEN_LIBRARIES})
   set(EIGEN_PACKAGE Eigen)
 endif()
-
-message("[GEONAV_TRANSFORM] Eigen lib path: ${EIGEN_LIBRARIES}")
 
 add_definitions(-DEIGEN_NO_DEBUG -DEIGEN_MPL2_ONLY)
 
