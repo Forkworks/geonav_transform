@@ -3,9 +3,9 @@ project(geonav_transform)
 
 
 if(CROSSCOMPILE)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wl,-rpath,${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu -Wl,-rpath,${TX2_ROOT_PATH}/lib/aarch64-linux-gnu")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wl,-rpath,${TX2_ROOT_PATH}/usr/lib/${CMAKE_LIBRARY_ARCHITECTURE} -Wl,-rpath,${TX2_ROOT_PATH}/lib/${CMAKE_LIBRARY_ARCHITECTURE}")
 	set(Boost_INCLUDE_DIRS  ${TX2_ROOT_PATH}/usr/include/boost)
-	set(Boost_LIBRARIES  ${TX2_ROOT_PATH}/usr/lib/aarch64-linux-gnu)
+	set(Boost_LIBRARIES  ${TX2_ROOT_PATH}/usr/lib/${CMAKE_LIBRARY_ARCHITECTURE})
 endif()
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
