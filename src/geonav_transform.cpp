@@ -184,9 +184,9 @@ void GeonavTransform::run()
     ros::spinOnce();
 
     // Check for odometry 
-    if ( (ros::Time::now().toSec()-nav_update_time_.toSec()) > 1.0 ){
-      ROS_WARN_STREAM("Haven't received Odometry on <"
-		      << odom_sub.getTopic() << "> for 1.0 seconds!" 
+    if ( (ros::Time::now().toSec()-nav_update_time_.toSec()) > 10.0 ){
+      ROS_WARN_STREAM_THROTTLE(10,"Haven't received Odometry on <"
+              << odom_sub.getTopic() << "> for 10.0 seconds!"
 		      << " Will not broadcast transform!");
     }
     else{
