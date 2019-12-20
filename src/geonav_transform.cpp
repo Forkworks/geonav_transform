@@ -90,6 +90,7 @@ void GeonavTransform::run()
 	      "geonav_transform configuration");
     ROS_ERROR("Setting to 0,0,0 which is non-ideal!");
     datum_lat = datum_lon = datum_yaw = 0.0;
+    exit(-1);
   }
   else
   {
