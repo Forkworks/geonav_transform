@@ -259,7 +259,7 @@ void GeonavTransform::navOdomCallback(const nav_msgs::OdometryConstPtr& msg)
 		   !std::isnan(msg->pose.pose.position.z));
   if (!good_gps)
   {
-    ROS_WARN_STREAM("Bad GPS!  Won't transfrom");
+    ROS_WARN_STREAM_THROTTLE(10,"Bad GPS!  Won't transfrom");
     return;
   }
 
@@ -270,11 +270,11 @@ void GeonavTransform::navOdomCallback(const nav_msgs::OdometryConstPtr& msg)
   NavsatConversions::LLtoUTM(msg->pose.pose.position.y, 
 			     msg->pose.pose.position.x, 
 			     utmY, utmX, utm_zone_tmp);
-  ROS_DEBUG_STREAM_THROTTLE(2.0,"Latest GPS (lat, lon, alt): "
+  ROS_DEBUG_STREAM_THROTTLE(10.0,"Latest GPS (lat, lon, alt): "
 			    << msg->pose.pose.position.y << " , "
 			    << msg->pose.pose.position.x << " , "
 			    << msg->pose.pose.position.z );
-  ROS_DEBUG_STREAM_THROTTLE(2.0,"UTM of latest GPS is (X,Y):" 
+  ROS_DEBUG_STREAM_THROTTLE(10.0,"UTM of latest GPS is (X,Y):"
 			    << utmX << " , " << utmY);
 
   // For now the 'nav' frame is that same as the 'base_link' frame
