@@ -97,6 +97,7 @@ void GeonavTransform::run()
     XmlRpc::XmlRpcValue datum_config;
     try
     {
+
       nh_priv.getParam("datum", datum_config);
       
       /* Handle datum specification. 
